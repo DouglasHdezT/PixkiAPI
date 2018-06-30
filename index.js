@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser =  require('body-parser');
+const mongoose = require('mongoose')
 
 const app =  express();
 const port = process.env.PORT || 3001;
@@ -28,6 +29,11 @@ app.put('/api/user/:idUsuario',(req,res)=>{
 
 app.delete('/api/user/:idUsuario',(req,res)=>{
 
+});
+
+mongoose.connect('mongodb://localhost:27017/PixkiAPI',(err, res)=>{
+    if(err) throw err;
+    console.log('Conexion ricolina');
 });
 
 app.listen(port, ()=>{
