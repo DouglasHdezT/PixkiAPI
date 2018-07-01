@@ -19,12 +19,12 @@ const controlSchema = Schema({
     repeat:{
         type:String,
         require:true,
-        default:true
+        default:"true"
     },
     status:{
         type:String,
         require: true,
-        default: false
+        default: "false"
     },
     id_user:{
         type:String
