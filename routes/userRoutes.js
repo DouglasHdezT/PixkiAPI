@@ -6,7 +6,7 @@ const api = express.Router();
 
 
 api.get('/user/:idUsuario',UserCtrl.getUser);
-api.post('/user',UserCtrl.insertUser);
+api.post('/user',authorization,UserCtrl.insertUser);
 api.put('/user/:idUsuario',UserCtrl.updateUser);
 api.delete('/user/:idUsuario',UserCtrl.deleteUser);
 

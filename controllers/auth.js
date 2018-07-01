@@ -26,7 +26,16 @@ function signUp(){
 }
 
 function signIn(){
+    User.find({nickname:req.body.nickname},(err,user)=>{
+        if(err) return res.status(500).send({message:"Error interno"})
 
+        if(!user) return res.status(403).send({message:"Not found"})
+
+        req.user = user
+        res.status(200).send({
+            token: services.createToken(user)
+        });
+    });
 }
 
 module.exports={

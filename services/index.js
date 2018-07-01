@@ -13,6 +13,23 @@ function createToken(user){
     return jwt.encode(payload, config.SECRET);
 }
 
+function decodeToken(token){
+    const decode = new Promise((resolve,reject)=>{
+        try{
+            const payload = jwt.decode(token,config.SECRET_TOKEN)
+
+            resolve(payload.sub)
+        }catch(err){
+            reject({
+                status:500,
+                message:"Token Invalido"
+            });
+        }
+    });
+
+    return decode
+}
+
 module.exports = {
     createToken
 }
