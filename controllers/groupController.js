@@ -31,7 +31,7 @@ function getGroup(req,res){
 
     let groupId = req.params.groupId;
     Group.findById(groupId,(err,group)=>{
-        if(err) return res.status().send({message: "Intertal Server Error"});
+        if(err) return res.status(500).send({message: "Intertal Server Error"});
 
         if(!group) return res.status(404).send({message:"Error 404, Not found"});
 
