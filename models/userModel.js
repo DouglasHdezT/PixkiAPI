@@ -17,6 +17,7 @@ const userSchema = Schema({
 
     nickname:{
         type:String,
+        unique:true,
         require:true
     },
 
@@ -27,6 +28,7 @@ const userSchema = Schema({
 
     email:{
         type:String,
+        unique:true,
         require:true
     }, 
 
