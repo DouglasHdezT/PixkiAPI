@@ -29,7 +29,7 @@ app.post('/api/user',(req,res)=>{
     user.nickname = req.body.nickname;
     user.password = req.body.password;
     user.emai = req.body.emai;
-    user.avatar = req.avatar;
+    user.avatar = req.body.avatar;
 
     user.save((err,productStore)=>{
         if(err) res.status(500).send({message: 'Internal Server Error '+err})
