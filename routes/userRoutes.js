@@ -6,7 +6,14 @@ const api = express.Router();
 
 
 api.get('/user/:idUsuario',authorization,UserCtrl.getUser);
-api.put('/user/:idUsuario',UserCtrl.updateUser);
-api.delete('/user/:idUsuario',UserCtrl.deleteUser);
+api.get('/user',authorization,UserCtrl.getSelfUser);
+
+api.put('/user/',authorization,UserCtrl.updateUser);
+
+api.delete('/user/:idUsuario',UserCtrl.deleteUser); //TODO SOlo por pruebas borrar luego.
+api.delete('/user/',authorization,UserCtrl.deleteSelfUser);
+
+api.post('/user/groups',authorization, UserCtrl.insertGroupId)
+api.delete('/user/groups/:idGroup',authorization, UserCtrl.deleteGroupId)
 
 module.exports = api;

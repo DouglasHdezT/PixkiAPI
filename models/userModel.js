@@ -36,6 +36,7 @@ const userSchema = new Schema({
     },
 
     user_group:[{
+        _id:false,
         id_group:{
             type:String,
             require:true
@@ -48,6 +49,7 @@ const userSchema = new Schema({
         }
     }],
     user_symptom:[{
+        _id:false,
         id_symptom:{
             type:String,
             require:true
@@ -55,6 +57,7 @@ const userSchema = new Schema({
     }],
 
     user_location:[{
+        _id:false,
         id_location:{
             type:String,
             require:true
@@ -62,6 +65,7 @@ const userSchema = new Schema({
     }],
 
     group_request:[{
+        _id:false,
         id_group:String
     }],
 
