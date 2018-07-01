@@ -17,12 +17,12 @@ const controlSchema = Schema({
         require:true
     },
     repeat:{
-        type:boolean,
+        type:String,
         require:true,
         default:true
     },
     status:{
-        type:boolean,
+        type:String,
         require: true,
         default: false
     },
