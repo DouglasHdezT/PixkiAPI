@@ -54,6 +54,13 @@ const userSchema = Schema({
         }
     }],
 
+    user_location:[{
+        id_location:{
+            type:String,
+            require:true
+        }
+    }],
+
     group_request:[{id_group:String}]
 });
 
