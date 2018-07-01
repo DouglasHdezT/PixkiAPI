@@ -1,29 +1,13 @@
 'use strict'
 
 const User = require('../models/userModel');
-
-function insertUser(req, res){
-    let user = new User();
-    let rq = req.body;
-
-    user.first_name = rq.first_name;
-    user.last_name = rq.last_name;
-    user.nickname = rq.nickname;
-    user.password = rq.password;
-    user.email = rq.email;
-    user.avatar = rq.avatar;
-
-    user.save((err, userStg)=>{
-        if (err) return res.status(500).send({
-            message: `Something is wrong!: ${err}`
-        });
-
-        res.status(200).send({userStg});
-    });
-};
+const services = require('../services');
 
 function getUser(req, res){
     let userId = req.params.idUsuario;
+
+    console.log('gg izi')
+    console.log(req.user);
 
     User.findById(userId, (err, user)=>{
         if(err) return res.status(500).send({message:`Something is wrong!: ${err}`});
@@ -94,7 +78,6 @@ function deleteLocation(req, res){
 }
 
 module.exports = {
-    insertUser,
     getUser,
     deleteUser,
     updateUser,
