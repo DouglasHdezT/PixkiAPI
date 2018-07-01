@@ -23,7 +23,7 @@ function insertUser(req, res){
 };
 
 function getUser(req, res){
-    let userId = req.params.userId;
+    let userId = req.params.idUsuario;
 
     User.findById(userId, (err, user)=>{
         if(err) return res.status(500).send({message:`Something is wrong!: ${err}`});
@@ -35,7 +35,7 @@ function getUser(req, res){
 };
 
 function deleteUser(req, res){
-    let userId =  req.params.userId;
+    let userId =  req.params.idUsuario;
 
     User.findById(userId, (err, userDel)=>{
         if(err) return res.status(500).send({
@@ -55,7 +55,7 @@ function deleteUser(req, res){
 };
 
 function updateUser(req, res){
-    let userId = req.params.userId
+    let userId = req.params.idUsuario
     let update = req.body
 
     User.findByIdAndUpdate(userId, update, (err, userUp)=>{
