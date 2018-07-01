@@ -11,6 +11,7 @@ function signUp(){
         last_name: req.body.last_name,
         nickname: req.body.nickname,
         email: req.body.email,
+        password: req.body.password
     });
     
     user.save((err)=>{
