@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = Schema({
     first_name:{
@@ -21,7 +22,7 @@ const userSchema = Schema({
 
     password:{
         type:String,
-        require:true
+        select:false
     },
 
     email:{
@@ -61,7 +62,22 @@ const userSchema = Schema({
         }
     }],
 
-    group_request:[{id_group:String}]
+    group_request:[{
+        id_group:String
+    }],
+
+    singup_date:{
+        type:Date,
+        default:Date.now()
+    },
+
+    last_login:{
+        type:Date
+    }
+});
+
+userSchema.pre('save',(next)=>{
+    if(!user.isModified('password')) return next()
 });
 
 module.exports = mongoose.model("User", userSchema);

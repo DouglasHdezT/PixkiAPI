@@ -5,13 +5,13 @@ const bodyParser =  require('body-parser');
 
 const app =  express();
 
-const apiUser = require('./routes/userRoutes');
-const apiGroup = require('./routes/groupRoutes');
+const routesUser = require('./routes/userRoutes');
+const routesGroup = require('./routes/groupRoutes');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use('/api',apiUser);
-app.use('/api',apiGroup);
+app.use('/api',routesUser);
+app.use('/api',routesGroup);
 
 module.exports=app;
