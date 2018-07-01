@@ -5,8 +5,7 @@ const authorization = require('../middlewares/auth')
 const api = express.Router();
 
 
-api.get('/user/:idUsuario',UserCtrl.getUser);
-api.post('/user',authorization,UserCtrl.insertUser);
+api.get('/user/:idUsuario',authorization,UserCtrl.getUser);
 api.put('/user/:idUsuario',UserCtrl.updateUser);
 api.delete('/user/:idUsuario',UserCtrl.deleteUser);
 

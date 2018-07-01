@@ -16,7 +16,7 @@ function createToken(user){
 function decodeToken(token){
     const decode = new Promise((resolve,reject)=>{
         try{
-            const payload = jwt.decode(token,config.SECRET_TOKEN)
+            const payload = jwt.decode(token,config.SECRET)
 
             resolve(payload.sub)
         }catch(err){
@@ -31,5 +31,6 @@ function decodeToken(token){
 }
 
 module.exports = {
-    createToken
+    createToken,
+    decodeToken
 }

@@ -1,12 +1,11 @@
 'use strict'
 
-const mongoose = require('mongoose');
 const services = require('../services')
 
 const User = require('../models/userModel');
 
-function signUp(){
-    user = new User({
+function signUp(req, res){
+   let user = new User({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         nickname: req.body.nickname,
@@ -19,13 +18,13 @@ function signUp(){
             message: `Something is wrong!: ${err}`
         });
 
-        return res.status(200).send({
+        res.status(200).send({
             token: services.createToken(user)
         })
     });
 }
 
-function signIn(){
+function signIn(req, res){
     User.find({nickname:req.body.nickname},(err,user)=>{
         if(err) return res.status(500).send({message:"Error interno"})
 

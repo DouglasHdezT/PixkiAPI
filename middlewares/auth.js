@@ -8,12 +8,12 @@ function isAuth (req,res,next){
 
     const token = req.headers.authorization.split(' ')[1]
     services.decodeToken(token)
-        .then(response=>{
+        .then(response =>{
             req.user = response
             next()
         })
         .catch(response =>{
-            res.status(response.status)
+            res.status(response.status).send(response.message)
         })
 
 }
