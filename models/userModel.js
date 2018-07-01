@@ -47,6 +47,12 @@ const userSchema = Schema({
             enum:["admin","member"]
         }
     }],
+    user_symptom:[{
+        id_symptom:{
+            type:String,
+            require:true
+        }
+    }],
 
     group_request:[{id_group:String}]
 });
