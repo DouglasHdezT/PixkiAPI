@@ -34,7 +34,7 @@ app.post('/api/user',(req,res)=>{
     user.save((err,productStore)=>{
         if(err) res.status(500).send({message: 'Internal Server Error '+err})
 
-        res.status(200).send({message:'success'})
+        res.status(200).send({message:productStore})
     });
 });
 
