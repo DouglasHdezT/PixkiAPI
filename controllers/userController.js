@@ -221,7 +221,7 @@ function deleteGroupId(req, res){
 
 function deleteSymptom(req, res){
     let userId = req.user;
-    let symptomId = req.body.symptom_id;
+    let symptomId = req.params.idSymptom;
 
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({
@@ -246,7 +246,7 @@ function deleteSymptom(req, res){
 
 function deleteLocation(req, res){
     let userId = req.user;
-    let locationId = req.body.location_id;
+    let locationId = req.params.idLocation;
 
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({
@@ -271,7 +271,7 @@ function deleteLocation(req, res){
 
 function deleteRequest(req, res){
     let userId = req.user;
-    let groupId = req.body.group_id;
+    let groupId = req.params.idGroup;
 
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({
