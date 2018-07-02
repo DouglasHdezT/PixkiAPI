@@ -294,6 +294,54 @@ function deleteRequest(req, res){
     });
 }
 
+function getAllGroups(req,res){
+    let userId = req.user;
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something Wrong!`
+        })
+
+        res.status(200).send({user_group: usr.user_group});
+    });
+}
+
+function getAllSymptoms(req,res){
+    let userId = req.user;
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something Wrong!`
+        })
+
+        res.status(200).send({user_symptom: usr.user_symptom});
+    });
+}
+
+function getAllLocations(req,res){
+    let userId = req.user;
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something Wrong!`
+        })
+
+        res.status(200).send({user_location: usr.user_location});
+    });
+}
+
+function getAllRequests(req,res){
+    let userId = req.user;
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something Wrong!`
+        })
+
+        res.status(200).send({group_request: usr.group_request});
+    });
+}
+
 module.exports = {
     getUser,
     getSelfUser,
@@ -307,5 +355,9 @@ module.exports = {
     deleteGroupId,
     deleteSymptom,
     deleteLocation,
-    deleteRequest
+    deleteRequest,
+    getAllGroups,
+    getAllSymptoms,
+    getAllLocations,
+    getAllRequests
 }
