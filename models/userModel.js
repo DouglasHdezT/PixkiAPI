@@ -22,12 +22,12 @@ const userSchema = new Schema({
 
     password:{
         type:String,
-        select:false
+        //select:false
     },
 
     email:{
         type:String,
-        require:true
+        require:true,
     }, 
 
     avatar:{

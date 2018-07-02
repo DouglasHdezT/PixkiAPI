@@ -5,7 +5,7 @@ const authorization = require('../middlewares/auth')
 const api = express.Router();
 
 
-api.get('/user/:idUsuario',authorization,UserCtrl.getUser);
+api.get('/user/one/:idUsuario',authorization,UserCtrl.getUser);
 api.get('/user',authorization,UserCtrl.getSelfUser);
 
 api.put('/user/',authorization,UserCtrl.updateUser);
@@ -22,7 +22,7 @@ api.delete('/user/symptoms/:idSymptom',authorization, UserCtrl.deleteSymptom)
 api.get('/user/symptoms', authorization, UserCtrl.getAllSymptoms);
 
 api.post('/user/locations',authorization, UserCtrl.insertLocation)
-api.delete('/user/locations/:idLocations',authorization, UserCtrl.deleteLocation)
+api.delete('/user/locations/:idLocation',authorization, UserCtrl.deleteLocation)
 api.get('/user/locations', authorization, UserCtrl.getAllLocations);
 
 api.post('/user/requests',authorization, UserCtrl.insertRequest)

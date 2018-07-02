@@ -86,6 +86,12 @@ function insertGroupId(req, res){
     let userId = req.user;
     let groupId = req.body.group_id;
 
+    if(groupId == null || groupId == ""){
+        return res.status(400).send({
+            message: `Bad Request!`
+        });
+    }
+
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({
             message: `Something is wrong!`
@@ -112,6 +118,12 @@ function insertGroupId(req, res){
 function insertSymptom(req, res){
     let userId = req.user;
     let symptomId = req.body.symptom_id;
+
+    if(symptomId == null || symptomId == ""){
+        return res.status(400).send({
+            message: `Bad Request!`
+        });
+    }
 
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({
@@ -140,14 +152,16 @@ function insertLocation(req, res){
     let userId = req.user;
     let locationId = req.body.location_id;
 
+    if(locationId == null || locationId == ""){
+        return res.status(400).send({
+            message: `Bad Request!`
+        });
+    }
+
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({
             message: `Something is wrong!`
         });
-
-        while(usr.user_location.lenght > 5){
-            usr.user_location.pop();
-        }
 
         usr.user_location.forEach((act)=>{
             if(act.id_location == locationId){
@@ -156,6 +170,10 @@ function insertLocation(req, res){
         });
 
         usr.user_location.push({id_location:locationId})
+
+        while(usr.user_location.length > 5){
+            usr.user_location.shift();
+        }
 
         usr.save((err, usrSaved)=>{
             if(err) return res.status(500).send({
@@ -170,6 +188,12 @@ function insertLocation(req, res){
 function insertRequest(req, res){
     let userId = req.user;
     let groupId = req.body.group_id;
+
+    if(groupId == null || groupId == ""){
+        return res.status(400).send({
+            message: `Bad Request!`
+        });
+    }
 
     User.findById(userId, (err, usr)=>{
         if(err) return res.status(500).send({

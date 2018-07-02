@@ -28,11 +28,17 @@ function signIn(req, res){
     User.find({nickname:req.body.nickname},(err,user)=>{
         if(err) return res.status(500).send({message:"Error interno"})
 
-        if(!user) return res.status(403).send({message:"Not found"})
+        if(!user) return res.status(404).send({message:"Not found"})
 
-        req.user = user
+        if(user[0].password != req.body.password){
+            return res.status(403).send({
+                message: `Invalid Credentials!`
+            });
+        }
+
+        req.user = user[0]
         res.status(200).send({
-            token: services.createToken(user)
+            token: services.createToken(user[0])
         });
     });
 }
