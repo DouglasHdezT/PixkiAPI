@@ -145,6 +145,10 @@ function insertLocation(req, res){
             message: `Something is wrong!`
         });
 
+        while(usr.user_location.lenght > 5){
+            usr.user_location.pop();
+        }
+
         usr.user_location.forEach((act)=>{
             if(act.id_location == locationId){
                 usr.user_location.splice(usr.user_location.indexOf(act),1);
@@ -216,11 +220,78 @@ function deleteGroupId(req, res){
 }
 
 function deleteSymptom(req, res){
+    let userId = req.user;
+    let symptomId = req.body.symptom_id;
 
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something is wrong!`
+        });
+
+        usr.user_symptom.forEach((act)=>{
+            if(act.id_symptom == symptomId){
+                usr.user_symptom.splice(usr.user_symptom.indexOf(act),1);
+            }
+        });
+
+        usr.save((err, usrSaved)=>{
+            if(err) return res.status(500).send({
+                message: `Something is wrong!`
+            });
+            
+            res.status(200).send({usrSaved})
+        });
+    });
 }
 
 function deleteLocation(req, res){
-    
+    let userId = req.user;
+    let locationId = req.body.location_id;
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something is wrong!`
+        });
+
+        usr.user_location.forEach((act)=>{
+            if(act.id_location == locationId){
+                usr.user_location.splice(usr.user_location.indexOf(act),1);
+            }
+        });
+
+        usr.save((err, usrSaved)=>{
+            if(err) return res.status(500).send({
+                message: `Something is wrong!`
+            });
+            
+            res.status(200).send({usrSaved})
+        });
+    });
+}
+
+function deleteRequest(req, res){
+    let userId = req.user;
+    let groupId = req.body.group_id;
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something is wrong!`
+        });
+
+        usr.group_request.forEach((act)=>{
+            if(act.id_group == groupId){
+                usr.group_request.splice(usr.group_request.indexOf(act),1);
+            }
+        });
+
+        usr.save((err, usrSaved)=>{
+            if(err) return res.status(500).send({
+                message: `Something is wrong!`
+            });
+            
+            res.status(200).send({usrSaved})
+        });
+    });
 }
 
 module.exports = {
@@ -232,7 +303,9 @@ module.exports = {
     insertGroupId,
     insertSymptom,
     insertLocation,
+    insertRequest,
     deleteGroupId,
     deleteSymptom,
-    deleteLocation
+    deleteLocation,
+    deleteRequest
 }
