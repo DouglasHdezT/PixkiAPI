@@ -17,18 +17,15 @@ const taskSchema = Schema({
         require:true
     },
     repeat:{
-        type:boolean,
+        type:String,
         require:true,
-        default:true
+        default:"true"
     },
     status:{
-        type:boolean,
+        type:String,
         require: true,
-        default: false
+        default: "false"
     },
-    id_user:{
-        type:String
-    }
 });
 
 module.exports = mongoose.model("Task",taskSchema);
