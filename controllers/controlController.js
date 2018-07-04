@@ -53,6 +53,7 @@ function deleteControl(req, res){
 
         control.remove(err =>{
             if(err) return res.status(500).send({message:"Internal Error Server"});
+            if(!control) return req.staus(404).send({message:"Not found"});
             res.status(200).send({message:"control eliminado correctamente"});
         });
     });

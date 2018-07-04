@@ -21,7 +21,7 @@ function deleteGroup(req,res){
 
         group.remove(err =>{
             if(err) res.status(500).send({message:"Internal Server ERROR 500"});
-
+            if(!group) return req.staus(404).send({message:"Not found"});
             res.status(200).send({message:"success"})
         });
     });
