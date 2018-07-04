@@ -40,7 +40,13 @@ function deleteLocation(req,res){
 }
 
 function updateLocation(){
-
+    let locationId = req.params.locationId
+    let update = req.body;
+    
+    Location.findByIdAndUpdate(locationId, update, (err, location)=>{
+        if(err) return res.status(500).send({message: "Something Wrong!"})
+        res.status(200).send({location})
+    })
 }
 
 module.exports={
