@@ -25,3 +25,5 @@ const locationSchema = Schema({
         default:Date.now
     }
 });
+
+module.exports = mongoose.model("Location",locationSchema);

@@ -1,4 +1,4 @@
-'user strict'
+'use strict'
 const Symptom = require('../models/symptomModel');
 
 function insertSymptom(req,res){
@@ -15,7 +15,7 @@ function getSymptom(req,res){
     let symptomId = req.params.symptomId;
     Symptom.findById(symptomId,(err,symptom)=>{
         if(err) return res.status(500).send({message:"Internal Server Error"});
-        if(!symptom) return res.status(403).send({message:"Not found"})
+        if(!symptom) return res.status(404).send({message:"Not found"})
 
         res.status(200).send({symptom});
     });
@@ -34,6 +34,7 @@ function deleteSymptom(req,res){
 
     Symptom.findById(symptomId,(err,symptom)=>{
         if(err) return res.status(500).send({message:"Internal Server Error"});
+        if(!symptom) return res.status(404).send({message:"Not found"})
 
         symptom.remove(err =>{
             if(err) return res.status(500).send({message:"Internal Server Error"});
