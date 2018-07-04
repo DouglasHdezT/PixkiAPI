@@ -11,6 +11,7 @@ const routesAuth = require('./routes/authRoutes');
 const routesControl = require('./routes/controlRoutes');
 const routesTask = require('./routes/taskRoutes');
 const routesSymptom = require('./routes/symptomRoutes');
+const routesLocation = require('./routes/locationRoutes');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -21,5 +22,6 @@ app.use('/auth',routesAuth);
 app.use('/api',routesControl);
 app.use('/api',routesTask);
 app.use('/api',routesSymptom);
+app.use('/api',routesLocation);
 
 module.exports=app;
