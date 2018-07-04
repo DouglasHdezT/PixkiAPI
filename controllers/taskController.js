@@ -40,6 +40,7 @@ function deleteTask(req,res){
         if(err) return res.staus(500).send({message:"Internal Error Server"});
         task.remove(err=>{
             if(err) return req.staus(500).send({message:"Internal Error"});
+            if(!task) return req.staus(404).send({message:"Not found"});
             res.staus(200).send({message:"sucesses"});
         });
     });
