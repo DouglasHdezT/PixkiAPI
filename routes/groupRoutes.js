@@ -9,4 +9,12 @@ api.post('/group',auth,GroupCtrl.insertGroup);
 api.put('/group/:groupId',auth,GroupCtrl.updateGroup);
 api.delete('/group/:groupId',auth,GroupCtrl.deleteGroup);
 
+
+
+api.post('group/user/:groupId',auth,insertUserId)
+
+api.post('group/symptom/:groupId',auth,insertSymptomId)
+
+api.post('group/task/:groupId',auth,insertTaskId)
+
 module.exports = api;

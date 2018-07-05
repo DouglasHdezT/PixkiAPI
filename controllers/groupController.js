@@ -49,9 +49,109 @@ function updateGroup(req,res){
     });
 };
 
+
+function insertUserId(req,res){
+    let groupId = req.params.groupId;
+    let userId = req.body.userId;
+
+    if(userId==null || userId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_users.forEach((act) => {
+            if(act.id_user==userId){
+                group.group_users.splice(group.group_users.indexOf(act),1)
+            }
+        });
+    
+        group.group_users.push({id_user:userId})
+
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });
+}
+
+function insertSymptomId(req,res){
+    let groupId = req.params.groupId;
+    let symptomId = req.body.symptomId;
+
+    if(symptomId==null || symptomId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_symptoms.forEach((act) => {
+            if(act.id_symptom==symptomId){
+                group.group_symptoms.splice(group.group_symptoms.indexOf(act),1)
+            }
+        });
+    
+        group.group_symptoms.push({id_symptom:symptomId})
+
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });
+}
+
+function insertTaskId(req,res){
+    let groupId = req.params.groupId;
+    let symptomId = req.body.symptomId;
+
+    if(symptomId==null || symptomId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_symptoms.forEach((act) => {
+            if(act.id_symptom==symptomId){
+                group.group_symptoms.splice(group.group_symptoms.indexOf(act),1)
+            }
+        });
+    
+        group.group_symptoms.push({id_symptom:symptomId})
+
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });
+
+    
+}
+
+
 module.exports ={
     insertGroup,
     deleteGroup,
     getGroup,
-    updateGroup
+    updateGroup,
+    insertUserId,
+    insertSymptomId,
+    insertTaskId
 }
