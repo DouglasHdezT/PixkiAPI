@@ -80,7 +80,35 @@ function insertUserId(req,res){
         });
     });
 }
+function deleteUserId(req,res){
+    let groupId = req.params.groupId;
+    let userId = req.body.userId;
 
+    if(userId==null || userId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_users.forEach((act) => {
+            if(act.id_user==userId){
+                group.group_users.splice(group.group_users.indexOf(act),1)
+            }
+        });
+    
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });        
+
+}
 function insertSymptomId(req,res){
     let groupId = req.params.groupId;
     let symptomId = req.body.symptomId;
@@ -112,7 +140,36 @@ function insertSymptomId(req,res){
     });
 }
 
-function insertTaskId(req,res){
+function deleteUserId(req,res){
+    let groupId = req.params.groupId;
+    let userId = req.body.userId;
+
+    if(userId==null || userId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_users.forEach((act) => {
+            if(act.id_user==userId){
+                group.group_users.splice(group.group_users.indexOf(act),1)
+            }
+        });
+    
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });        
+
+}
+function deleteSymptomId(req,res){
     let groupId = req.params.groupId;
     let symptomId = req.body.symptomId;
 
@@ -131,7 +188,36 @@ function insertTaskId(req,res){
             }
         });
     
-        group.group_symptoms.push({id_symptom:symptomId})
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });
+}
+
+function insertTaskId(req,res){
+    let groupId = req.params.groupId;
+    let taskId = req.body.taskId;
+
+    if(taskId==null || taskId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_symptoms.forEach((act) => {
+            if(act.id_task==taskId){
+                group.group_tasks.splice(group.group_tasks.indexOf(act),1)
+            }
+        });
+    
+        group.group_symptoms.push({id_symptom:taskId})
 
         group.save((err,groupSave)=>{
             if(err) return res.status(500).send({
@@ -144,7 +230,36 @@ function insertTaskId(req,res){
 
     
 }
+function deleteTaskId(req,res){
+    let groupId = req.params.groupId;
+    let taskId = req.body.taskId;
 
+    if(taskId==null || taskId==""){
+        return res.status(404).send({
+            message:"group not found"
+        });
+    }
+
+    Group.findById(groupId, (err,group)=>{
+        if(err) return res.status(500).send({message:"Internal Server Error"});
+
+        group.group_tasks.forEach((act) => {
+            if(act.id_task==taskId){
+                group.group_symptoms.splice(group.group_tasks.indexOf(act),1)
+            }
+        });
+    
+        group.save((err,groupSave)=>{
+            if(err) return res.status(500).send({
+                message:"Internal Server Error"
+            });
+
+            res.status(200).send({groupSave})
+        });
+    });
+
+    
+}
 
 module.exports ={
     insertGroup,
@@ -153,5 +268,8 @@ module.exports ={
     updateGroup,
     insertUserId,
     insertSymptomId,
-    insertTaskId
+    insertTaskId,
+    deleteUserId,
+    deleteSymptomId,
+    deleteTaskId
 }
