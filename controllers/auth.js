@@ -43,7 +43,30 @@ function signIn(req, res){
     });
 }
 
+function verifyUser(req,res){
+    let act_nick = req.body.nickname;
+    let act_email = req.body.email;
+    let control = false;
+
+
+
+    User.find(({$or:[{nickname: act_nick},{email: act_email}]}),(err, usrFnd)=>{
+        if(err) return res.status(500).send({message:"Error interno"})
+        
+        if(!usrFnd[0]){
+            return res.status(200).send({
+                message: "User doesnt exist"
+            });   
+        }
+        
+        control = true;
+       return res.status(403).send({message:"Already exist"})
+    });
+
+}
+
 module.exports={
     signIn,
-    signUp
+    signUp,
+    verifyUser
 }
