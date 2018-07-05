@@ -11,11 +11,11 @@ api.delete('/group/:groupId',auth,GroupCtrl.deleteGroup);
 
 
 //Verificar en caso de error
-/*
-api.post('/group/user/:groupId',auth,insertUserId)
 
-api.post('/group/symptom/:groupId',auth,insertSymptomId)
+api.post('/group/user/:groupId',auth,GroupCtrl.insertUserId)
 
-api.post('/group/task/:groupId',auth,insertTaskId)*/
+api.post('/group/symptom/:groupId',auth,GroupCtrl.insertSymptomId)
+
+api.post('/group/task/:groupId',auth,GroupCtrl.insertTaskId)
 
 module.exports = api;
