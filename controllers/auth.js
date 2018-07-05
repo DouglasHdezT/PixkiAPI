@@ -27,8 +27,8 @@ function signUp(req, res){
 function signIn(req, res){
     User.find({nickname:req.body.nickname},(err,user)=>{
         if(err) return res.status(500).send({message:"Error interno"})
-
-        if(!user) return res.status(404).send({message:"Not found"})
+        
+        if(!user[0]) return res.status(404).send({message:"Not found"})
 
         if(user[0].password != req.body.password){
             return res.status(403).send({
