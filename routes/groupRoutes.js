@@ -10,7 +10,7 @@ api.put('/group/:groupId',auth,GroupCtrl.updateGroup);
 api.delete('/group/:groupId',auth,GroupCtrl.deleteGroup);
 
 
-
+//Verificar en caso de error
 api.post('group/user/:groupId',auth,insertUserId)
 
 api.post('group/symptom/:groupId',auth,insertSymptomId)
