@@ -11,7 +11,7 @@ function getUser(req, res){
         
         if(!user) return res.status(404).send({message:`The user doesnt exist`});
 
-        res.status(200).send({user});
+        res.status(200).send(user);
     });
 };
 
@@ -23,7 +23,7 @@ function getSelfUser(req, res){
         
         if(!user) return res.status(404).send({message:`The user doesnt exist`});
 
-        res.status(200).send({user});
+        res.status(200).send(user);
     });
 };
 
@@ -76,9 +76,7 @@ function updateUser(req, res){
             message: `Something is wrong!: ${err}`
         });
 
-        res.status(200).send({
-            userUp
-        })
+        res.status(200).send(userUp)
     });
 };
 
@@ -110,7 +108,7 @@ function insertGroupId(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -143,7 +141,7 @@ function insertSymptom(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -180,7 +178,7 @@ function insertLocation(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -213,7 +211,7 @@ function insertRequest(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -238,7 +236,7 @@ function deleteGroupId(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -263,7 +261,7 @@ function deleteSymptom(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -288,7 +286,7 @@ function deleteLocation(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -313,7 +311,7 @@ function deleteRequest(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send({usrSaved})
+            res.status(200).send(usrSaved)
         });
     });
 }
@@ -326,7 +324,7 @@ function getAllGroups(req,res){
             message: `Something Wrong!`
         })
 
-        res.status(200).send({user_group: usr.user_group});
+        res.status(200).send(usr.user_group);
     });
 }
 
@@ -338,7 +336,7 @@ function getAllSymptoms(req,res){
             message: `Something Wrong!`
         })
 
-        res.status(200).send({user_symptom: usr.user_symptom});
+        res.status(200).send(usr.user_symptom);
     });
 }
 
@@ -350,7 +348,7 @@ function getAllLocations(req,res){
             message: `Something Wrong!`
         })
 
-        res.status(200).send({user_location: usr.user_location});
+        res.status(200).send(usr.user_location);
     });
 }
 
@@ -362,7 +360,7 @@ function getAllRequests(req,res){
             message: `Something Wrong!`
         })
 
-        res.status(200).send({group_request: usr.group_request});
+        res.status(200).send(usr.group_request);
     });
 }
 

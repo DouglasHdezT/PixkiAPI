@@ -8,10 +8,10 @@ const api = express.Router();
 api.get('/user/one/:idUsuario',authorization,UserCtrl.getUser);
 api.get('/user',authorization,UserCtrl.getSelfUser);
 
-api.put('/user/',authorization,UserCtrl.updateUser);
+api.put('/user',authorization,UserCtrl.updateUser);
 
 api.delete('/user/:idUsuario',UserCtrl.deleteUser); //TODO SOlo por pruebas borrar luego.
-api.delete('/user/',authorization,UserCtrl.deleteSelfUser);
+api.delete('/user',authorization,UserCtrl.deleteSelfUser);
 
 api.post('/user/groups',authorization, UserCtrl.insertGroupId)
 api.delete('/user/groups/:idGroup',authorization, UserCtrl.deleteGroupId)
