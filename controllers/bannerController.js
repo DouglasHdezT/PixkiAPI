@@ -18,7 +18,7 @@ function getBanners(req,res){
             message: `Something is wrong!: ${err}`
         });
 
-        res.status(200).send();
+        res.status(200).send({banner:[]});
     });
 }
 
