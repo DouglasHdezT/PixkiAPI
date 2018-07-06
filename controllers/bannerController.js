@@ -12,14 +12,13 @@ function insertBanner(req,res){
         res.status(200).send({bannerStg});
     });
 }
-function getBanners(req,banners){
-    let banner = new Banner();
+function getBanners(req,res){
     banner.find((err,res)=>{
         if(err) return res.status(500).send({
             message: `Something is wrong!: ${err}`
         });
 
-        re.status(200).send(banners);
+        res.status(200).send();
     });
 }
 
