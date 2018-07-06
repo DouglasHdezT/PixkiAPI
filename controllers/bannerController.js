@@ -13,12 +13,12 @@ function insertBanner(req,res){
     });
 }
 function getBanners(req,res){
-    banner.find((err,res)=>{
+    Banner.find({},(err,banners)=>{
         if(err) return res.status(500).send({
             message: `Something is wrong!: ${err}`
         });
 
-        res.status(200).send({banner:[]});
+        res.status(200).send(banners);
     });
 }
 
