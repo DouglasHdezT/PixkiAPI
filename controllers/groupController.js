@@ -9,7 +9,7 @@ function insertGroup(req,res){
 
     group.save((err,groupStorage)=>{
         if (err) return res.status(500).send({message:"Ocurrio un error, verificar valores"})
-        res.status(200).send({group:groupStorage});
+        res.status(200).send(groupStorage);
     });
 };
 
@@ -35,7 +35,7 @@ function getGroup(req,res){
 
         if(!group) return res.status(404).send({message:"Error 404, Not found"});
 
-        res.status(200).send({group});
+        res.status(200).send(group);
     });
 };
 
@@ -45,7 +45,7 @@ function updateGroup(req,res){
 
     Group.findByIdAndUpdate(groupId,update,(err,groupUpdated)=>{
         if (err) return res.status(500).send({message:"Error al actualizar, verificar datos"});
-        res.status(200).send({group:groupUpdated});
+        res.status(200).send(groupUpdated);
     });
 };
 
@@ -53,6 +53,7 @@ function updateGroup(req,res){
 function insertUserId(req,res){
     let groupId = req.params.groupId;
     let userId = req.body.userId;
+    let rol_type = req.body.rol_type;
 
     if(userId==null || userId==""){
         return res.status(404).send({
@@ -62,21 +63,21 @@ function insertUserId(req,res){
 
     Group.findById(groupId, (err,group)=>{
         if(err) return res.status(500).send({message:"Internal Server Error"});
-
+        if(!group) return res.status(404).send({message: "Group not found"})
         group.group_users.forEach((act) => {
             if(act.id_user==userId){
                 group.group_users.splice(group.group_users.indexOf(act),1)
             }
         });
     
-        group.group_users.push({id_user:userId})
+        group.group_users.push({id_user:userId, rol:rol_type})
 
         group.save((err,groupSave)=>{
             if(err) return res.status(500).send({
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });
 }
@@ -104,11 +105,12 @@ function deleteUserId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });        
 
 }
+
 function insertSymptomId(req,res){
     let groupId = req.params.groupId;
     let symptomId = req.body.symptomId;
@@ -135,7 +137,7 @@ function insertSymptomId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });
 }
@@ -164,7 +166,7 @@ function deleteUserId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });        
 
@@ -193,7 +195,7 @@ function deleteSymptomId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });
 }
@@ -224,7 +226,7 @@ function insertTaskId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });
 
@@ -254,11 +256,44 @@ function deleteTaskId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send({groupSave})
+            res.status(200).send(groupSave)
         });
     });
 
     
+}
+
+function getUsersId(req, res){
+    let groupId = req.params.groupId;
+
+    Group.findById(groupId, (err, group)=>{
+        if(err) return res.status(500).send({message: "Something Wrong"})
+        if(!group) return res.status(404).sedn({message:"Not Found"})
+
+        res.status(200).send(group.group_users)
+    })
+}
+
+function getTasks(req, res){
+    let groupId = req.params.groupId;
+
+    Group.findById(groupId, (err, group)=>{
+        if(err) return res.status(500).send({message: "Something Wrong"})
+        if(!group) return res.status(404).sedn({message:"Not Found"})
+
+        res.status(200).send(group.group_tasks)
+    })
+}
+
+function getSymptoms(req, res){
+    let groupId = req.params.groupId;
+
+    Group.findById(groupId, (err, group)=>{
+        if(err) return res.status(500).send({message: "Something Wrong"})
+        if(!group) return res.status(404).sedn({message:"Not Found"})
+
+        res.status(200).send(group.group_symptoms)
+    })
 }
 
 module.exports ={
@@ -271,5 +306,8 @@ module.exports ={
     insertTaskId,
     deleteUserId,
     deleteSymptomId,
-    deleteTaskId
+    deleteTaskId,
+    getUsersId,
+    getSymptoms,
+    getTasks
 }

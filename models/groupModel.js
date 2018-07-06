@@ -17,6 +17,12 @@ const groupSchema = Schema({
         id_user:{
             type:String,
             require:true
+        },
+        rol:{
+            type:String,
+            require:true,
+            default: 'member',
+            enum: ["admin","member"]
         }
     }],
     group_symptoms:[{
