@@ -17,8 +17,10 @@ function getBanners(req,res){
         if(err) return res.status(500).send({
             message: `Something is wrong!: ${err}`
         });
-
-        res.status(200).send(banners);
+        if(!banners) return res.status(500).send({
+            message: `No banners ${err}`
+        });
+        res.status(200).send({banners});
     });
 }
 
