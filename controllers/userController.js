@@ -76,7 +76,7 @@ function updateUser(req, res){
             message: `Something is wrong!: ${err}`
         });
 
-        res.status(200).send(userUp)
+        res.status(200).send({message:"Updated"})
     });
 };
 
