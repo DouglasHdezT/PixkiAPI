@@ -13,6 +13,7 @@ const routesTask = require('./routes/taskRoutes');
 const routesSymptom = require('./routes/symptomRoutes');
 const routesLocation = require('./routes/locationRoutes');
 const routesBanner = require('./routes/bannerRoutes');
+const routesAvatar = require('./routes/avatarRoutes');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -25,5 +26,6 @@ app.use('/api',routesTask);
 app.use('/api',routesSymptom);
 app.use('/api',routesLocation);
 app.use('/api',routesBanner);
+app.use('/api',routesAvatar);
 
 module.exports=app;
