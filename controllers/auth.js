@@ -65,8 +65,25 @@ function verifyUser(req,res){
 
 }
 
+function verifyUserAndId(req,res){
+    let act_nick = req.body.nickname;
+
+    User.find(({nickname: act_nick}),(err, usrFnd)=>{
+        if(err) return res.status(500).send({message:"Error interno"})
+        
+        if(!usrFnd[0]){
+            return res.status(404).send({
+                message: "Not Found"
+            });   
+        }
+       return res.status(200).send(usrFnd[0])
+    });
+
+}
+
 module.exports={
     signIn,
     signUp,
-    verifyUser
+    verifyUser,
+    verifyUserAndId
 }

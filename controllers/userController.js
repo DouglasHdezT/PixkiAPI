@@ -36,6 +36,8 @@ function deleteUser(req, res){
             message: `Something is wrong!: ${err}`
         });
 
+        if(!userDel) return res.status(404).send({message:"Grupo no encontrado"});
+
         userDel.remove(err=>{
             if(err) return res.status(500).send({
                 message: `Something is wrong!: ${err}`
