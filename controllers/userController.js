@@ -244,7 +244,7 @@ function insertSpecificRequest(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send(usrSaved)
+            res.status(200).send({message: "Insert succesfully"})
         });
     });
 }
