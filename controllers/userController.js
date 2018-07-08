@@ -216,6 +216,39 @@ function insertRequest(req, res){
     });
 }
 
+function insertSpecificRequest(req, res){
+    let userId = req.body.user_id;
+    let groupId = req.body.group_id;
+
+    if(groupId == null || groupId == ""){
+        return res.status(400).send({
+            message: `Bad Request!`
+        });
+    }
+
+    User.findById(userId, (err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something is wrong!`
+        });
+
+        usr.group_request.forEach((act)=>{
+            if(act.id_group == groupId){
+                usr.group_request.splice(usr.group_request.indexOf(act),1);
+            }
+        });
+
+        usr.group_request.push({id_group:groupId})
+
+        usr.save((err, usrSaved)=>{
+            if(err) return res.status(500).send({
+                message: `Something is wrong!`
+            });
+            
+            res.status(200).send(usrSaved)
+        });
+    });
+}
+
 function deleteGroupId(req, res){
     let userId = req.user;
     let groupId = req.params.idGroup;
@@ -374,6 +407,7 @@ module.exports = {
     insertSymptom,
     insertLocation,
     insertRequest,
+    insertSpecificRequest,
     deleteGroupId,
     deleteSymptom,
     deleteLocation,

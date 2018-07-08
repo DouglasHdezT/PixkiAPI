@@ -26,6 +26,7 @@ api.delete('/user/locations/:idLocation',authorization, UserCtrl.deleteLocation)
 api.get('/user/locations', authorization, UserCtrl.getAllLocations);
 
 api.post('/user/requests',authorization, UserCtrl.insertRequest)
+api.post('/user/group-requests',authorization, UserCtrl.insertSpecificRequest)
 api.delete('/user/requests/:idGroup',authorization, UserCtrl.deleteRequest)
 api.get('/user/requests', authorization, UserCtrl.getAllRequests);
 
