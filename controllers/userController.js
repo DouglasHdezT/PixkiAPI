@@ -108,7 +108,7 @@ function insertGroupId(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send(usrSaved)
+            res.status(200).send({message: "Inserted succefully"})
         });
     });
 }
@@ -344,7 +344,7 @@ function deleteRequest(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send(usrSaved)
+            res.status(200).send({message:"Deleted Succefully"})
         });
     });
 }

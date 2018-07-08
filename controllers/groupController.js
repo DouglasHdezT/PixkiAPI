@@ -39,6 +39,12 @@ function getGroup(req,res){
     });
 };
 
+function getAllGroups(req, res){
+    Group.find(({}, (err, result)=>{
+        res.status(200).send(result)
+    }))
+}
+
 function updateGroup(req,res){
     let groupId = req.params.groupId;
     let update = req.body
@@ -52,7 +58,7 @@ function updateGroup(req,res){
 
 function insertUserId(req,res){
     let groupId = req.params.groupId;
-    let userId = req.body.userId;
+    let userId = req.user;
     let rol_type = req.body.rol_type;
 
     if(userId==null || userId==""){
@@ -64,6 +70,7 @@ function insertUserId(req,res){
     Group.findById(groupId, (err,group)=>{
         if(err) return res.status(500).send({message:"Internal Server Error"});
         if(!group) return res.status(404).send({message: "Group not found"})
+        
         group.group_users.forEach((act) => {
             if(act.id_user==userId){
                 group.group_users.splice(group.group_users.indexOf(act),1)
@@ -77,7 +84,7 @@ function insertUserId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send(groupSave)
+            res.status(200).send({message: "Inserted Succesfully"})
         });
     });
 }
@@ -300,6 +307,7 @@ module.exports ={
     insertGroup,
     deleteGroup,
     getGroup,
+    getAllGroups,
     updateGroup,
     insertUserId,
     insertSymptomId,

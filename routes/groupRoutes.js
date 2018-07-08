@@ -5,6 +5,7 @@ const auth = require('../middlewares/auth');
 const api = express.Router();
 
 api.get('/group/:groupId',auth,GroupCtrl.getGroup);
+api.get('/group',auth,GroupCtrl.getAllGroups);
 api.post('/group',auth,GroupCtrl.insertGroup);
 api.put('/group/:groupId',auth,GroupCtrl.updateGroup);
 api.delete('/group/:groupId',auth,GroupCtrl.deleteGroup);
