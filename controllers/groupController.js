@@ -6,6 +6,7 @@ function insertGroup(req,res){
     let group = new Group;
     group.name = req.body.name;
     group.banner = req.body.banner;
+    group.description = req.body.description;
 
     group.save((err,groupStorage)=>{
         if (err) return res.status(500).send({message:"Ocurrio un error, verificar valores"})

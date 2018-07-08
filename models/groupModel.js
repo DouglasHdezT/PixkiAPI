@@ -12,6 +12,11 @@ const groupSchema = Schema({
         default:"",
         require:false
     },
+    descrption:{
+        type:String,
+        default:"",
+        require:false
+    },
     group_users:[{
         _id:false,
         id_user:{
