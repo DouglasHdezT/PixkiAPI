@@ -1,6 +1,7 @@
 'use strict'
 
 const User = require('../models/userModel');
+const Group = require('../models/groupModel');
 const services = require('../services');
 
 function getUser(req, res){
