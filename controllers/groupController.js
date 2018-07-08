@@ -18,8 +18,8 @@ function deleteGroup(req,res){
     let groupId = req.params.groupId;
 
     Group.findById(groupId,(err,group)=>{
-        if(err) res.status(500).send({message:"Algo salio mal"});
-
+        if(err) return res.status(500).send({message:"Algo salio mal"});
+        if(!group) return res.status(404).send({message:"Grupo no encontrado"});
         group.remove(err =>{
             if(err) return res.status(500).send({message:"Internal Server ERROR 500"});
             if(!group) return req.staus(404).send({message:"Not found"});
