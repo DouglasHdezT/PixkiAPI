@@ -57,7 +57,7 @@ function updateGroup(req,res){
 
     Group.findByIdAndUpdate(groupId,update,(err,groupUpdated)=>{
         if (err) return res.status(500).send({message:"Error al actualizar, verificar datos"});
-        res.status(200).send(groupUpdated);
+        res.status(200).send({message:"Updated"});
     });
 };
 
