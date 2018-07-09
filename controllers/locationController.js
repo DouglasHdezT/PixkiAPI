@@ -1,16 +1,46 @@
 'use strict'
 const Location = require('../models/locationModel')
+const User = require('../models/userModel')
 
 function insertLocation(req,res){
+    let id_user = req.user
+
     let location = new Location()
 
     location.altitude = req.body.altitude
     location.latitude = req.body.latitude
-    location.name = req.body.name
 
     location.save((err, locationStg)=>{
+        
         if(err) return res.status(500).send({message:"Something Wrong!"})
-        res.status(200).send({locationStg})
+
+        let locationId = locationStg._id
+
+        User.findById(id_user, (err, usr)=>{
+            if(err) return res.status(500).send({
+                message: `Something is wrong!`
+            });
+    
+            usr.user_location.forEach((act)=>{
+                if(act.id_location == locationId){
+                    usr.user_location.splice(usr.user_location.indexOf(act),1);
+                }
+            });
+    
+            usr.user_location.push({id_location:locationId})
+    
+            while(usr.user_location.length > 5){
+                usr.user_location.shift();
+            }
+    
+            usr.save((err, usrSaved)=>{
+                if(err) return res.status(500).send({
+                    message: `Something is wrong!`
+                });
+                
+                res.status(200).send({message:"Inserted"})
+            })
+        })
     })
 }
 

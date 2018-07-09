@@ -14,11 +14,6 @@ const locationSchema = Schema({
         require: true
     },
 
-    name:{
-        type:String,
-        require:true
-    },
-
     date_time:{
         type:Date,
         require:true,
