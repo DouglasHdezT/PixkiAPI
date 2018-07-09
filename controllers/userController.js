@@ -86,6 +86,7 @@ function updateUser(req, res){
 function insertGroupId(req, res){
     let userId = req.user;
     let groupId = req.body.group_id;
+    let groupId = req.body.rol_type;
 
     if(groupId == null || groupId == ""){
         return res.status(400).send({
@@ -104,7 +105,7 @@ function insertGroupId(req, res){
             }
         });
 
-        usr.user_group.push({id_group:groupId})
+        usr.user_group.push({id_group:groupId, rol: rol_type})
 
         usr.save((err, usrSaved)=>{
             if(err) return res.status(500).send({

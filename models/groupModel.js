@@ -15,13 +15,13 @@ const groupSchema = Schema({
     descrption:{
         type:String,
         default:"",
-        require:false
+        require:true
     },
     group_users:[{
         _id:false,
         id_user:{
-            type:String,
-            require:true
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'User'
         },
         rol:{
             type:String,
