@@ -91,7 +91,7 @@ function insertUserId(req,res){
 }
 function deleteUserId(req,res){
     let groupId = req.params.groupId;
-    let userId = req.body.userId;
+    let userId = req.user;
 
     if(userId==null || userId==""){
         return res.status(404).send({
@@ -113,7 +113,7 @@ function deleteUserId(req,res){
                 message:"Internal Server Error"
             });
 
-            res.status(200).send(groupSave)
+            res.status(200).send({message:"Deleted"})
         });
     });        
 

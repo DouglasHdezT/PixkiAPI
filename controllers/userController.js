@@ -272,7 +272,7 @@ function deleteGroupId(req, res){
                 message: `Something is wrong!`
             });
             
-            res.status(200).send(usrSaved)
+            res.status(200).send({message: "Deleted!"})
         });
     });
 }
