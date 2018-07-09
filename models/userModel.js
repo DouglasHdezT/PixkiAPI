@@ -32,7 +32,7 @@ const userSchema = new Schema({
 
     avatar:{
         type:String,
-        default: "",
+        default: "http://comunicasv.com/assets/avatar/avatar_default.png",
     },
 
     user_group:[{
@@ -59,8 +59,8 @@ const userSchema = new Schema({
     user_location:[{
         _id:false,
         id_location:{
-            type:String,
-            require:true
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Location',
         }
     }],
 

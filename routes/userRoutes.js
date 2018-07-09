@@ -24,6 +24,7 @@ api.get('/user/symptoms', authorization, UserCtrl.getAllSymptoms);
 api.post('/user/locations',authorization, UserCtrl.insertLocation)
 api.delete('/user/locations/:idLocation',authorization, UserCtrl.deleteLocation)
 api.get('/user/locations', authorization, UserCtrl.getAllLocations);
+api.get('/user/locations/:id_user', authorization, UserCtrl.getAllLocationsPUser);
 
 api.post('/user/requests',authorization, UserCtrl.insertRequest)
 api.post('/user/group-requests',authorization, UserCtrl.insertSpecificRequest)

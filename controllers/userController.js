@@ -389,6 +389,20 @@ function getAllLocations(req,res){
     });
 }
 
+function getAllLocationsPUser(req,res){
+    let userId = req.params.id_user;
+
+    User.findById(userId)
+    .populate('user_location')
+    .exec((err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something Wrong!`
+        })
+
+        res.status(200).send(usr.user_location);
+    });
+}
+
 function getAllRequests(req,res){
     let userId = req.user;
 
@@ -419,5 +433,6 @@ module.exports = {
     getAllGroups,
     getAllSymptoms,
     getAllLocations,
+    getAllLocationsPUser,
     getAllRequests
 }
