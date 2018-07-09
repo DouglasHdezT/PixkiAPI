@@ -31,7 +31,9 @@ function deleteGroup(req,res){
 function getGroup(req,res){
 
     let groupId = req.params.groupId;
-    Group.findById(groupId,(err,group)=>{
+    Group.findById(groupId)
+    .populate('group_users.id_user')
+    .exec((err,group)=>{
         if(err) return res.status(500).send({message: "Intertal Server Error"});
 
         if(!group) return res.status(404).send({message:"Error 404, Not found"});
