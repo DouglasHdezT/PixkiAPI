@@ -37,7 +37,7 @@ function getGroup(req,res){
         if(!group) return res.status(404).send({message:"Error 404, Not found"});
 
         res.status(200).send(group);
-    }).populate('id_user');
+    });
 };
 
 function getAllGroups(req, res){
