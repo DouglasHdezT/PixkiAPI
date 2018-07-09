@@ -12,7 +12,7 @@ const groupSchema = Schema({
         default:"",
         require:false
     },
-    descrption:{
+    description:{
         type:String,
         default:"",
         require:true
