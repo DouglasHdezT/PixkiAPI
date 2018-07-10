@@ -393,11 +393,13 @@ function getAllLocationsPUser(req,res){
     let userId = req.params.id_user;
 
     User.findById(userId)
-    .populate('user_location')
+    .populate('user_location.id_location')
     .exec((err, usr)=>{
         if(err) return res.status(500).send({
             message: `Something Wrong!`
         })
+
+        if(!usr) return res.status(404).send({message:"Not found"})
 
         res.status(200).send(usr.user_location);
     });
