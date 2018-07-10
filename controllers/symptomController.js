@@ -1,5 +1,6 @@
 'use strict'
 const Symptom = require('../models/symptomModel');
+const User =  require('../models/userModel')
 
 function insertSymptom(req,res){
     let symptom = new Symptom();
@@ -38,9 +39,11 @@ function deleteSymptom(req,res){
 
         symptom.remove(err =>{
             if(err) return res.status(500).send({message:"Internal Server Error"});
-            res.status(200).send({message:"sintoma eliminado"});
+            res.status(200).send({message:"Deleted"})
+            
         });
-        
+    
+
     });
 }
 
