@@ -9,11 +9,12 @@ const symptonSchema = Schema({
     },
     description:{
         type:String,
-        require:true
+        require:true,
+        default: ""
     },
     date_time:{
         type:Date,
-        require:Date.now
+        default:Date.now
     }
 });
 
