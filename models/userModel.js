@@ -51,8 +51,8 @@ const userSchema = new Schema({
     user_symptom:[{
         _id:false,
         id_symptom:{
-            type:String,
-            require:true
+            type:mongoose.Schema.Types.ObjectId,
+            ref: "Symptom"
         }
     }],
 

@@ -368,7 +368,9 @@ function getAllGroups(req,res){
 function getAllSymptoms(req,res){
     let userId = req.user;
 
-    User.findById(userId, (err, usr)=>{
+    User.findById(userId)
+    .populate("user_symptom.id_symptom")
+    .exec((err, usr)=>{
         if(err) return res.status(500).send({
             message: `Something Wrong!`
         })
@@ -377,14 +379,31 @@ function getAllSymptoms(req,res){
     });
 }
 
-function getAllLocations(req,res){
-    let userId = req.user;
+function getAllSymptomsPUser(req,res){
+    let userId = req.params.id_user;
 
-    User.findById(userId, (err, usr)=>{
+    User.findById(userId)
+    .populate("user_symptom.id_symptom")
+    .exec((err, usr)=>{
         if(err) return res.status(500).send({
             message: `Something Wrong!`
         })
+        if(!usr) return res.status(404).send({message: "not found"})
+        
+        res.status(200).send(usr.user_symptom);
+    });
+}
 
+function getAllLocations(req,res){
+    let userId = req.user;
+
+    User.findById(userId)
+    .populate("user_location.id_location")
+    .exec((err, usr)=>{
+        if(err) return res.status(500).send({
+            message: `Something Wrong!`
+        })
+        
         res.status(200).send(usr.user_location);
     });
 }
@@ -434,6 +453,7 @@ module.exports = {
     deleteRequest,
     getAllGroups,
     getAllSymptoms,
+    getAllSymptomsPUser,
     getAllLocations,
     getAllLocationsPUser,
     getAllRequests
