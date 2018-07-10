@@ -8,7 +8,7 @@ function insertSymptom(req,res){
 
     symptom.save((err,symptomStorage)=>{
         if(err) return res.status(500).save({message:"Internal Server Error"});
-        res.status(200).send({symptomStorage});
+        res.status(200).send(symptomStorage);
     });
 }
 function getSymptom(req,res){
