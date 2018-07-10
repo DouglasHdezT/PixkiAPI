@@ -19,7 +19,7 @@ api.get('/user/groups', authorization, UserCtrl.getAllGroups);
 
 api.post('/user/symptoms',authorization, UserCtrl.insertSymptom)
 api.delete('/user/symptoms/:idSymptom',authorization, UserCtrl.deleteSymptom)
-api.get('/user/symptoms/:id_user',authorization, UserCtrl.deleteSymptom)
+api.get('/user/symptoms/:id_user',authorization, UserCtrl.getAllSymptomsPUser)
 api.get('/user/symptoms', authorization, UserCtrl.getAllSymptoms);
 
 api.post('/user/locations',authorization, UserCtrl.insertLocation)
